@@ -41,5 +41,6 @@ JWT有多种实现方式,这里使用最流行的jjwt
 `127.0.0.1:8082/Abc/showAbc`
 
 #### 关于jwt密钥签名
-JwtUtil.keyPair动态生成secrect,用户token加密,keypair保存在redis中或使用其他方案,只要保证多个微服务用到的是同一个keypair即可
-这里固定一个keypair,为了的方便演示,但是一旦keypair泄漏,用户便可自行签发jwt,造成安全隐患
+JwtUtil.keyPair动态生成secrect,用户token加密,keypair保存在redis中或使用其他方案,  
+只要保证多个微服务用到的是同一个keypair即可  
+这里固定一个keypair保存在配置文件里,为了的方便演示,但是一旦keypair泄漏,用户便可自行签发jwt,造成安全隐患
