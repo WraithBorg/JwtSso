@@ -4,13 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>JwtSso</artifactId>
-        <groupId>com.jsso</groupId>
+        <groupId>com.jsso.wt</groupId>
         <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>JssCommon</artifactId>
     <version>0.0.1</version>
-
-
+    <build>
+        <finalName>SvfCommon</finalName>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

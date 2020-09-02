@@ -8,14 +8,16 @@
 		<module>JssWebAbc</module>
 		<module>JssWebXyz</module>
 		<module>JssWebMno</module>
-	</modules>
+		<module>JssLogin</module>
+        <module>JssConfig</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.jsso</groupId>
+	<groupId>com.jsso.wt</groupId>
 	<artifactId>JwtSso</artifactId>
 	<version>0.0.1</version>
 	<name>JwtSso</name>
@@ -30,7 +32,37 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!-- jwt -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.2</version>
+		</dependency>
+		<!-- jwt -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.2</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- jwt -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+			<version>0.11.2</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Json -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.70</version>
+		</dependency>
+		<!-- thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

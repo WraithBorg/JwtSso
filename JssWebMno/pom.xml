@@ -4,13 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>JwtSso</artifactId>
-        <groupId>com.jsso</groupId>
+        <groupId>com.jsso.wt</groupId>
         <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>JssWebMno</artifactId>
     <version>0.0.1</version>
-
+    <build>
+        <finalName>JssWebMno</finalName>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.jsso.wt</groupId>
+            <artifactId>JssCommon</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
 
 </project>
