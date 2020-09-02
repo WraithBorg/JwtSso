@@ -1,6 +1,8 @@
 package com.jsso.wt.common.result;
 
-
+/**
+ * 自定义DTO返回数据结构
+ */
 public class DockResult<T> {
 
     private static final Integer SUCCESS = 1;

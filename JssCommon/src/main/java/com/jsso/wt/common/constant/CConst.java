@@ -9,9 +9,7 @@ public class CConst {
     public static final String LOGIN_DEFAULT_ACCOUNT = "zxu";
     public static final String LOGIN_DEFAULT_PASSWORD = "4862";
 
-    public static final String PROP_ID = "id";
-    public static final String PROP_LOGIN_ACCOUNT = "account";
-    public static final String PROP_LOGIN_PASSWORD = "password";
+    public static final String LOGIN_PAGE = "http://www.login.sso.com:8081/Login/loginPage";
     // cookie
     public static final String CO_JWT_TOKEN = "jwttoken";
     // JWT

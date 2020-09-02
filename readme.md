@@ -1,5 +1,20 @@
 # 基于JWT的SSO单点登陆
 
+#### 单点登陆原理
+访问登录服务,登录成功后,将jwt token写入到cookie中,
+cookie的domain范围设置为sso.com,
+这样sso.com下所有的子域名,都能拿到该token,从而实现单点登录功能
+
+#### 项目结构
+JssCommon 通用工具包
+JssLogin 登录服务 通过`www.aic.sso.com`访问
+JssWebAbc 服务一 通过`www.abc.sso.com`访问
+JssWebMno 服务二 通过`www.abc.ssn.com`访问
+
+#### 技术总结
+JWT有多种实现方式,这里使用最流行的jjwt
+使用thymeleaf模版引擎,避免不必要的前端开发
+
 #### 数据准备
 修改host文件
 ```
@@ -23,9 +38,7 @@
 
 4: 访问以下资源,发现无法访问,因为cookie的domain范围设置为sso.com,zxu.com不在该范围内,所以访问失败
 `www.zxu.com:8082/Abc/showAbc`
-
-#### 备注
-filter和interceptor如何选择,看实际情况
+`127.0.0.1:8082/Abc/showAbc`
 
 #### 关于jwt密钥签名
 JwtUtil.keyPair动态生成secrect,用户token加密,keypair保存在redis中或使用其他方案,只要保证多个微服务用到的是同一个keypair即可

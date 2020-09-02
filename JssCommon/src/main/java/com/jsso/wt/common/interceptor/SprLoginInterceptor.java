@@ -22,9 +22,9 @@ public class SprLoginInterceptor extends HandlerInterceptorAdapter {
         // 根据cookie获取token
         String jwtToken = null;
         Cookie[] cookies = request.getCookies();
-        if (cookies == null){
+        if (cookies == null) {
             LOGGER.error("用户不存在,请重新登录");
-            response.sendRedirect("http://www.login.sso.com:8081/Login/loginPage");
+            response.sendRedirect(LOGIN_PAGE);
             return false;
         }
         for (Cookie cookie : cookies) {
@@ -35,21 +35,21 @@ public class SprLoginInterceptor extends HandlerInterceptorAdapter {
         }
         if (jwtToken == null) {
             LOGGER.error("用户不存在,请重新登录");
-            response.sendRedirect("http://www.login.sso.com:8081/Login/loginPage");
+            response.sendRedirect(LOGIN_PAGE);
             return false;
         }
         // 根据jwt token获取用户信息
         DockResult<JwtClaim> jwtClaimDockResult = new JwtUtil4KeyPair().parseUser(jwtToken);
         if (jwtClaimDockResult.error()) {
             LOGGER.error(jwtClaimDockResult.getMessage());
-            response.sendRedirect("http://www.login.sso.com:8081/Login/loginPage");
+            response.sendRedirect(LOGIN_PAGE);
             return false;
         }
         // 校验用户信息是否有效
         JwtClaim jwtClaim = jwtClaimDockResult.getData();
         if (!(jwtClaim.getPassword().equals(LOGIN_DEFAULT_PASSWORD) && jwtClaim.getAccount().equals(LOGIN_DEFAULT_ACCOUNT))) {
             LOGGER.error("用户密码不正确,请重新登录");
-            response.sendRedirect("http://www.login.sso.com:8081/Login/loginPage");
+            response.sendRedirect(LOGIN_PAGE);
             return false;
         }
         return super.preHandle(request, response, handler);

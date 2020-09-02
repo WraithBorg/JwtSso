@@ -12,10 +12,4 @@ public class AbcController {
     public Object showAbc() {
         return CustomUtil.ofMap("msg", "访问受保护资源ABC");
     }
-
-    @RequestMapping("/Abc/showAbcNoPass")
-    @ResponseBody
-    public Object showAbcNoPass() {
-        return CustomUtil.ofMap("msg", "访问公开资源ABC");
-    }
 }

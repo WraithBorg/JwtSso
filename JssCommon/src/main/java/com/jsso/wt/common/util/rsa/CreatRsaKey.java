@@ -12,6 +12,9 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Base64;
 
+/**
+ * 创建非对称密钥，并写入文件
+ */
 public class CreatRsaKey {
     //密钥长度 于原文长度对应 以及越长速度越慢 必须大于 512
     private final static int KEY_SIZE = 2048;

@@ -10,6 +10,9 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
+/**
+ * 根据文件生成非对称密钥
+ */
 public class PairKey {
     //公钥路径  src/main/resources/ec/publickey.ec
     private static final String PUBLIC_URI = "rsa/publickey.rsa";

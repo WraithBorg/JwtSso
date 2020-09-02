@@ -17,8 +17,7 @@ public class SprAppConfig extends WebMvcConfigurationSupport {
                 .addPathPatterns("/**")
                 .excludePathPatterns(
                         "/Login/loginPage",
-                        "/Login/loginByUserName",
-                        "/Abc/showAbcNoPass");
+                        "/Login/loginByUserName");
 
         super.addInterceptors(registry);
     }
