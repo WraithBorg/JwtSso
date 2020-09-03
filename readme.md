@@ -23,6 +23,12 @@ JWT有多种实现方式,这里使用最流行的jjwt
 127.0.0.1 www.mno.sso.com
 127.0.0.1 www.zxu.com
 ```
+#### 启动程序（无先后顺序）
+```
+MnoApplication
+AbcApplication
+JssLoginApplication
+```
 
 #### 测试SSO
 1: 访问下面受保护资源，发现无法访问
@@ -36,11 +42,11 @@ JWT有多种实现方式,这里使用最流行的jjwt
 `www.abc.sso.com:8082/Abc/showAbc`
 `www.mno.sso.com:8083/Mno/accessMno`
 
-4: 访问以下资源,发现无法访问,因为cookie的domain范围设置为sso.com,zxu.com不在该范围内,所以访问失败
+4: 访问以下资源,发现无法访问,因为cookie的domain范围设置为sso.com,但是zxu.com并不在该范围内,所以访问失败
 `www.zxu.com:8082/Abc/showAbc`
 `127.0.0.1:8082/Abc/showAbc`
 
 #### 关于jwt密钥签名
-JwtUtil.keyPair动态生成secrect,用户token加密,keypair保存在redis中或使用其他方案,  
-只要保证多个微服务用到的是同一个keypair即可  
+JwtUtil.keyPair动态生成secrect,用户token加密,keypair保存在redis中或使用其他方案,
+只要保证多个微服务用到的是同一个keypair即可
 这里固定一个keypair保存在配置文件里,为了的方便演示,但是一旦keypair泄漏,用户便可自行签发jwt,造成安全隐患
