@@ -1,15 +1,15 @@
 # 基于JWT的SSO单点登陆
 
 #### 单点登陆原理
-访问登录服务,登录成功后,将jwt token写入到cookie中,
+> 访问登录服务,登录成功后,将jwt token写入到cookie中,
 cookie的domain范围设置为sso.com,
 这样sso.com下所有的子域名,都能拿到该token,从而实现单点登录功能
 
 #### 项目结构
-JssCommon 通用工具包
-JssLogin 登录服务 通过`www.aic.sso.com`访问
-JssWebAbc 服务一 通过`www.abc.sso.com`访问
-JssWebMno 服务二 通过`www.abc.ssn.com`访问
++ JssCommon 通用工具包
++ JssLogin 登录服务 通过`www.aic.sso.com`访问
++ JssWebAbc 服务一 通过`www.abc.sso.com`访问
++ JssWebMno 服务二 通过`www.abc.ssn.com`访问
 
 #### 技术总结
 JWT有多种实现方式,这里使用最流行的jjwt
