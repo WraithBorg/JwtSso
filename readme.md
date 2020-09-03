@@ -1,9 +1,9 @@
 # 基于JWT的SSO单点登陆
 
 #### 单点登陆原理
-访问登录服务,登录成功后,将jwt token写入到cookie中,
-cookie的domain范围设置为sso.com,
-这样sso.com下所有的子域名,都能拿到该token,从而实现单点登录功能
+访问登录服务,登录成功后,将jwt token写入到cookie中,  
+cookie的domain范围设置为sso.com,  
+这样sso.com下所有的子域名,都能拿到该token,从而实现单点登录功能  
 
 #### 项目结构
 + JssCommon 通用工具包
@@ -51,6 +51,6 @@ www.zxu.com:8082/Abc/showAbc
 127.0.0.1:8082/Abc/showAbc
 ```
 #### 关于jwt密钥签名
-JwtUtil.keyPair动态生成secrect,用户token加密,keypair保存在redis中或使用其他方案,
-只要保证多个微服务用到的是同一个keypair即可
+JwtUtil.keyPair动态生成secrect,用户token加密,keypair保存在redis中或使用其他方案,  
+只要保证多个微服务用到的是同一个keypair即可  
 这里固定一个keypair保存在配置文件里,为了的方便演示,但是一旦keypair泄漏,用户便可自行签发jwt,造成安全隐患
