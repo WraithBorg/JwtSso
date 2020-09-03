@@ -3,6 +3,7 @@ package com.jsso.wt.abc.controller;
 import com.jsso.wt.common.jwt.JwtClaim;
 import com.jsso.wt.common.jwt.JwtUtil4KeyPair;
 import com.jsso.wt.common.result.DockResult;
+import com.jsso.wt.common.util.SprWebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,16 +39,9 @@ public class JssLoginController {
         }
         //
         JwtClaim jwtClaim = new JwtClaim(LOGIN_DEFAULT_USER_ID, LOGIN_DEFAULT_ACCOUNT, LOGIN_DEFAULT_PASSWORD);
-        String jwtToken = new JwtUtil4KeyPair().createJWT(jwtClaim);
+        String jwtToken = JwtUtil4KeyPair.createJWT(jwtClaim);
         // 设置cookie
-        Cookie cookie = new Cookie(CO_JWT_TOKEN, jwtToken);
-        cookie.setMaxAge(60 * 60);
-        cookie.setPath("/");
-        cookie.setSecure(false);
-        cookie.setVersion(0);
-        cookie.setHttpOnly(true);
-        cookie.setDomain("sso.com");
-        response.addCookie(cookie);
+        response.addCookie(SprWebUtils.generatorCookie(jwtToken));
 
         return DockResult.success("登陆成功,可以访问以下资源:" +
                 "127.0.0.1 www.abc.sso.com," +

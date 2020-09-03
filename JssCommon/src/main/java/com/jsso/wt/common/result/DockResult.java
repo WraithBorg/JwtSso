@@ -16,8 +16,8 @@ public class DockResult<T> {
     private DockResult() {
     }
 
-    public static <T> DockResult success(String message, T data) {
-        return new DockResult<>(SUCCESS, message, data);
+    public static <T> DockResult<T> success(String message, T data) {
+        return new DockResult<T>(SUCCESS, message, data);
     }
 
     public static <T> DockResult<T> success(T data) {
@@ -36,8 +36,8 @@ public class DockResult<T> {
         return new DockResult<>(ERROR, errorMsg, data);
     }
 
-    public static <T> DockResult warn(String errorMsg, T data) {
-        return new DockResult<>(WARN, errorMsg, data);
+    public static <T> DockResult<T> warn(String errorMsg, T data) {
+        return new DockResult<T>(WARN, errorMsg, data);
     }
 
     private DockResult(int status, String message) {

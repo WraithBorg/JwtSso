@@ -14,8 +14,8 @@
 //     */
 //    static void testJwt4KeyPair() {
 //        JwtClaim jwtClaim = new JwtClaim("008", "zxu", "4862");
-//        String jwtToken = new JwtUtil4KeyPair().createJWT(jwtClaim);
-//        DockResult<JwtClaim> dockResult = new JwtUtil4KeyPair().parseUser(jwtToken);
+//        String jwtToken = JwtUtil4KeyPair.createJWT(jwtClaim);
+//        DockResult<JwtClaim> dockResult = JwtUtil4KeyPair.parseUser(jwtToken);
 //        System.out.println(JSON.toJSONString(dockResult));
 //    }
 //}

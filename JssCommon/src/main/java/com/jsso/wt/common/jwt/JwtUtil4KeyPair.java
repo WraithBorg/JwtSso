@@ -25,8 +25,8 @@ public class JwtUtil4KeyPair {
     /**
      * 用户登录成功后生成Jwt,默认token生效时间一小时
      */
-    public String createJWT(JwtClaim jwtClaim) {
-        return createJWT(jwtClaim, 60 * 60 * 1000L);
+    public static String createJWT(JwtClaim jwtClaim) {
+        return createJWT(jwtClaim, JWT_DEFAULT_EXPIRE);
     }
 
     /**
@@ -49,7 +49,7 @@ public class JwtUtil4KeyPair {
     /**
      * 获取用户信息
      */
-    public DockResult<JwtClaim> parseUser(String token) {
+    public static DockResult<JwtClaim> parseUser(String token) {
         try {
             // 根据jwt token 获取用户信息
             Jws<Claims> claimsJws = Jwts.parserBuilder()
@@ -73,20 +73,21 @@ public class JwtUtil4KeyPair {
     /**
      * 获取失效用户信息
      */
-    private static DockResult<JwtClaim> getJwtClaim4Invalid(String token) {
+    private  static DockResult<JwtClaim> getJwtClaim4Invalid(String token) {
         try {
-            long second = 60 * 60L;// 允许失效一小时的用户可以得到用户信息
             Jws<Claims> claimsJws = Jwts.parserBuilder()
                     .setSigningKey(keyPair.getPublic())
-                    .setAllowedClockSkewSeconds(second)
+                    .setAllowedClockSkewSeconds(JWT_DEFAULT_ALLOW_MAX_EXPIRE)// 允许失效一小时的用户可以得到用户信息
                     .build()
                     .parseClaimsJws(token);
             Claims body = claimsJws.getBody();
             String caccount = String.valueOf(body.get(JWT_ACCOUNT));
             String cid = String.valueOf(body.get(JWT_CID));
             String cpwd = String.valueOf(body.get(JWT_PASSWORD));
-            // 刷新Token TODO
-            return DockResult.success(new JwtClaim(cid, caccount, cpwd));
+            JwtClaim jwtClaim = new JwtClaim(cid, caccount, cpwd);
+            String jwtToken = createJWT(jwtClaim);
+            LOGGER.warn("JWT TOKEN 失效,已重新获取Token");
+            return DockResult.warn(jwtToken,new JwtClaim(cid, caccount, cpwd));
         } catch (ExpiredJwtException e) {
             return DockResult.fail("登录信息失效,请重新登录-02");
         } catch (Exception e) {

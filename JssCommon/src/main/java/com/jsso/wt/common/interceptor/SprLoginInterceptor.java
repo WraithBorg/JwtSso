@@ -3,6 +3,7 @@ package com.jsso.wt.common.interceptor;
 import com.jsso.wt.common.jwt.JwtClaim;
 import com.jsso.wt.common.jwt.JwtUtil4KeyPair;
 import com.jsso.wt.common.result.DockResult;
+import com.jsso.wt.common.util.SprWebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -38,12 +39,19 @@ public class SprLoginInterceptor extends HandlerInterceptorAdapter {
             response.sendRedirect(LOGIN_PAGE);
             return false;
         }
+
         // 根据jwt token获取用户信息
-        DockResult<JwtClaim> jwtClaimDockResult = new JwtUtil4KeyPair().parseUser(jwtToken);
+        DockResult<JwtClaim> jwtClaimDockResult = JwtUtil4KeyPair.parseUser(jwtToken);
         if (jwtClaimDockResult.error()) {
             LOGGER.error(jwtClaimDockResult.getMessage());
             response.sendRedirect(LOGIN_PAGE);
             return false;
+        }
+        // warn 表示需要重置token
+        if (jwtClaimDockResult.warn()) {
+            String jwtNewToken = jwtClaimDockResult.getMessage();
+            LOGGER.warn("重置TOKEN:" + jwtNewToken);
+            response.addCookie(SprWebUtils.generatorCookie(jwtNewToken));
         }
         // 校验用户信息是否有效
         JwtClaim jwtClaim = jwtClaimDockResult.getData();
