@@ -6,10 +6,8 @@
 	<modules>
 		<module>JssCommon</module>
 		<module>JssWebAbc</module>
-		<module>JssWebXyz</module>
 		<module>JssWebMno</module>
 		<module>JssLogin</module>
-        <module>JssConfig</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
